@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice of the Learners Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+<div class="container">
+  <div class="header">
+    <h1>VOICE OF THE LEARNERS</h1>
+    <p>Student Concern Management Portal</p>
+  </div>
+
+  <div class="toggle">
+    <button id="studentBtn" class="active">🎓 Student</button>
+    <button id="adminBtn">👩‍💼 Admin</button>
+  </div>
+
+  <div class="form">
+    <label>Full Name</label>
+    <input type="text" id="fullname" placeholder="Enter your full name">
+
+    <label>ID / Username</label>
+    <input type="text" id="username" placeholder="Enter Student ID or Admin Username">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Enter password">
+
+    <button class="login" onclick="login()">LOGIN</button>
+    <p id="msg"></p>
+  </div>
+
+  <footer>© 2026 Voice of the Learners Portal</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
