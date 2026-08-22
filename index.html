@@ -109,37 +109,51 @@ font-weight:bold;
 </div>
 
 <script>
+const students = [
+  { name: "Juan Dela Cruz", id: "2026-0001" },
+  { name: "Maria Santos", id: "2026-0002" }
+];
+
 function student(){
-studentForm.style.display="block";
-adminForm.style.display="none";
-studentBtn.classList.add("active");
-adminBtn.classList.remove("active");
+    studentForm.style.display="block";
+    adminForm.style.display="none";
+    studentBtn.classList.add("active");
+    adminBtn.classList.remove("active");
 }
 
 function admin(){
-studentForm.style.display="none";
-adminForm.style.display="block";
-adminBtn.classList.add("active");
-studentBtn.classList.remove("active");
+    studentForm.style.display="none";
+    adminForm.style.display="block";
+    adminBtn.classList.add("active");
+    studentBtn.classList.remove("active");
 }
 
 function login(){
 
-if(studentForm.style.display!="none"){
-if(name.value==""||id.value==""){
-alert("Please enter your Name and Student ID.");
-return;
-}
-localStorage.setItem("studentName",name.value);
-localStorage.setItem("studentID",id.value);
-window.location="student.html";
-}else{
-if(user.value=="principal" && pass.value=="admin123"){
-window.location="admin.html";
-}else{
-alert("Wrong admin username or password.");
-}
-}
+  if(studentForm.style.display!="none"){
+
+    const student = students.find(s =>
+      s.name.toLowerCase() === name.value.trim().toLowerCase() &&
+      s.id === id.value.trim()
+    );
+
+    if(student){
+      localStorage.setItem("studentName", student.name);
+      localStorage.setItem("studentID", student.id);
+      window.location = "student.html";
+    }else{
+      alert("Invalid student name or ID.");
+    }
+
+  }else{
+
+    if(user.value==="principal" && pass.value==="admin123"){
+      window.location="admin.html";
+    }else{
+      alert("Wrong admin username or password.");
+    }
+
+  }
 
 }
 </script>
