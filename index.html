@@ -3,39 +3,146 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Voice of the Learners Portal</title>
-<link rel="stylesheet" href="style.css">
+<title>Voice of the Learners</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+body{
+background:#F7F3F1;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+.card{
+width:100%;
+max-width:400px;
+background:white;
+border-radius:22px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+.header{
+background:#6E2C3A;
+color:white;
+padding:30px 20px;
+text-align:center;
+}
+.header h1{font-size:25px;}
+.header p{font-size:13px;margin-top:5px;}
+.switch{
+display:flex;
+margin:20px;
+background:#F1E6E8;
+border-radius:10px;
+padding:5px;
+}
+.switch button{
+flex:1;
+border:none;
+background:none;
+padding:10px;
+border-radius:8px;
+font-weight:bold;
+color:#6E2C3A;
+}
+.active{background:#6E2C3A;color:white!important;}
+.form{padding:0 20px 20px;}
+label{font-size:13px;color:#6E2C3A;font-weight:bold;}
+input{
+width:100%;
+padding:12px;
+margin:8px 0 15px;
+border:1px solid #ddd;
+border-radius:12px;
+}
+.login{
+width:100%;
+padding:13px;
+background:#6E2C3A;
+color:white;
+border:none;
+border-radius:12px;
+font-weight:bold;
+}
+#adminForm{display:none;}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="header">
-    <h1>VOICE OF THE LEARNERS</h1>
-    <p>Student Concern Management Portal</p>
-  </div>
+<div class="card">
 
-  <div class="toggle">
-    <button id="studentBtn" class="active">🎓 Student</button>
-    <button id="adminBtn">👩‍💼 Admin</button>
-  </div>
-
-  <div class="form">
-    <label>Full Name</label>
-    <input type="text" id="fullname" placeholder="Enter your full name">
-
-    <label>ID / Username</label>
-    <input type="text" id="username" placeholder="Enter Student ID or Admin Username">
-
-    <label>Password</label>
-    <input type="password" id="password" placeholder="Enter password">
-
-    <button class="login" onclick="login()">LOGIN</button>
-    <p id="msg"></p>
-  </div>
-
-  <footer>© 2026 Voice of the Learners Portal</footer>
+<div class="header">
+<h1>Voice of the Learners</h1>
+<p>Student Concern Management Portal</p>
 </div>
 
-<script src="script.js"></script>
+<div class="switch">
+<button id="studentBtn" class="active" onclick="student()">🎓 Student</button>
+<button id="adminBtn" onclick="admin()">👩‍💼 Admin</button>
+</div>
+
+<div class="form">
+
+<div id="studentForm">
+<label>Full Name</label>
+<input id="name" placeholder="Enter your full name">
+
+<label>Student ID Number</label>
+<input id="id" placeholder="Enter Student ID">
+</div>
+
+<div id="adminForm">
+<label>Username</label>
+<input id="user" placeholder="Username">
+
+<label>Password</label>
+<input id="pass" type="password" placeholder="Password">
+</div>
+
+<button class="login" onclick="login()">LOG IN</button>
+
+</div>
+
+</div>
+
+<script>
+function student(){
+studentForm.style.display="block";
+adminForm.style.display="none";
+studentBtn.classList.add("active");
+adminBtn.classList.remove("active");
+}
+
+function admin(){
+studentForm.style.display="none";
+adminForm.style.display="block";
+adminBtn.classList.add("active");
+studentBtn.classList.remove("active");
+}
+
+function login(){
+
+if(studentForm.style.display!="none"){
+if(name.value==""||id.value==""){
+alert("Please enter your Name and Student ID.");
+return;
+}
+localStorage.setItem("studentName",name.value);
+localStorage.setItem("studentID",id.value);
+window.location="student.html";
+}else{
+if(user.value=="principal" && pass.value=="admin123"){
+window.location="admin.html";
+}else{
+alert("Wrong admin username or password.");
+}
+}
+
+}
+</script>
+
 </body>
 </html>
