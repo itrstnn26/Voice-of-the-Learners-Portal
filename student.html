@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Dashboard</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+body{background:#F7F3F1;padding:20px;}
+.top{
+background:#6E2C3A;
+color:white;
+padding:20px;
+border-radius:18px;
+margin-bottom:20px;
+}
+.card{
+background:white;
+padding:18px;
+border-radius:18px;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+label{
+display:block;
+margin-top:12px;
+font-weight:bold;
+color:#6E2C3A;
+font-size:13px;
+}
+input,textarea{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ddd;
+border-radius:12px;
+}
+textarea{height:120px;}
+button{
+margin-top:20px;
+width:100%;
+padding:14px;
+background:#6E2C3A;
+color:white;
+border:none;
+border-radius:12px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+<h2>Welcome, <span id="student"></span></h2>
+<p>Voice of the Learners Student Portal</p>
+</div>
+
+<div class="card">
+
+<h3 style="color:#6E2C3A;">📄 File a Concern</h3>
+
+<label>Email</label>
+<input type="email" placeholder="Enter your email">
+
+<label>Full Name</label>
+<input id="fullname">
+
+<label>Grade Level / Section</label>
+<input placeholder="Example: Grade 11 - Rizal">
+
+<label>LRN / Student ID</label>
+<input id="lrn">
+
+<label>Term (1, 2, or 3)</label>
+<input placeholder="Type 1, 2, or 3">
+
+<label>Type of Concern</label>
+<input placeholder="Facilities / Bullying & Safety / Teacher-Related / Others">
+
+<label>WRITE YOUR CONCERN</label>
+<textarea placeholder="Type your concern here..."></textarea>
+
+<button onclick="submitConcern()">SUBMIT CONCERN</button>
+
+</div>
+
+<script>
+document.getElementById("student").innerHTML =
+localStorage.getItem("studentName") || "Student";
+
+document.getElementById("fullname").value =
+localStorage.getItem("studentName") || "";
+
+document.getElementById("lrn").value =
+localStorage.getItem("studentID") || "";
+
+function submitConcern(){
+alert("Concern submitted successfully! (Demo Version)");
+}
+</script>
+
+</body>
+</html>
