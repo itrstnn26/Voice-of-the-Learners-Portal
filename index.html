@@ -114,48 +114,56 @@ const students = [
   { name: "Maria Santos", id: "2026-0002" }
 ];
 
-function student(){
-    studentForm.style.display="block";
-    adminForm.style.display="none";
-    studentBtn.classList.add("active");
-    adminBtn.classList.remove("active");
+const studentForm = document.getElementById("studentForm");
+const adminForm = document.getElementById("adminForm");
+const studentBtn = document.getElementById("studentBtn");
+const adminBtn = document.getElementById("adminBtn");
+
+function student() {
+  studentForm.style.display = "block";
+  adminForm.style.display = "none";
+  studentBtn.classList.add("active");
+  adminBtn.classList.remove("active");
 }
 
-function admin(){
-    studentForm.style.display="none";
-    adminForm.style.display="block";
-    adminBtn.classList.add("active");
-    studentBtn.classList.remove("active");
+function admin() {
+  studentForm.style.display = "none";
+  adminForm.style.display = "block";
+  adminBtn.classList.add("active");
+  studentBtn.classList.remove("active");
 }
 
-function login(){
+function login() {
+  if (studentForm.style.display !== "none") {
+    const nameInput = document.getElementById("name").value.trim();
+    const idInput = document.getElementById("id").value.trim();
 
-  if(studentForm.style.display!="none"){
-
-    const student = students.find(s =>
-      s.name.toLowerCase() === name.value.trim().toLowerCase() &&
-      s.id === id.value.trim()
+    const account = students.find(s =>
+      s.name.toLowerCase() === nameInput.toLowerCase() &&
+      s.id === idInput
     );
 
-    if(student){
-      localStorage.setItem("studentName", student.name);
-      localStorage.setItem("studentID", student.id);
-      window.location = "student.html";
-    }else{
-      alert("Invalid student name or ID.");
+    if (account) {
+      localStorage.setItem("studentName", account.name);
+      localStorage.setItem("studentID", account.id);
+      window.location.href = "student.html";
+    } else {
+      alert("Invalid student name or student ID.");
     }
 
-  }else{
+  } else {
+    const user = document.getElementById("user").value.trim();
+    const pass = document.getElementById("pass").value.trim();
 
-    if(user.value==="principal" && pass.value==="admin123"){
-      window.location="admin.html";
-    }else{
+    if (user === "principal" && pass === "admin123") {
+      window.location.href = "admin.html";
+    } else {
       alert("Wrong admin username or password.");
     }
-
   }
-
 }
+
+student();
 </script>
 
 </body>
